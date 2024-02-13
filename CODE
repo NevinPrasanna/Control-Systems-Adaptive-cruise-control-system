@@ -1,0 +1,16 @@
+addpath(fullfile(matlabroot,'examples','mpc','main’));
+mdl = 'mpcACCsystem’;
+open_system(mdl)
+Ts = 0.1;
+T = 80;
+G_ego = tf(1,[0.5,1,0]);
+x0_lead = 50; % initial position for lead car (m)
+v0_lead = 25; % initial velocity for lead car (m/s)
+x0_ego = 10; % initial position for ego car (m)
+v0_ego = 20; % initial velocity for ego car (m/s)
+t_gap = 1.4;
+D_default = 10;v_set = 30;
+amin_ego = -3;
+amax_ego = 2;
+sim('mpcACCsystem’)
+mpcACCplot(logsout,D_default,t_gap,v_set)
